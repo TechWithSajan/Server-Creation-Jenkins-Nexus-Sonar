@@ -7,7 +7,7 @@
 
 apt update -y  # It will update repo 
 sudo apt install fontconfig openjdk-21-jre # It will install Openjdk
-openjdk version "21.0.10" 2026-01-20
+openjdk --version 
 
 
 sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
