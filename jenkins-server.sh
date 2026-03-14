@@ -6,20 +6,20 @@
 ################################################################################################
 
 apt update -y  # It will update repo 
-apt install openjdk-17-jre -y # It will install Openjdk
+sudo apt install fontconfig openjdk-21-jre # It will install Openjdk
+openjdk version "21.0.10" 2026-01-20
 
-curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
-  /usr/share/keyrings/jenkins-keyring.asc > /dev/null  # This will update the repository for jenkins
 
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-  https://pkg.jenkins.io/debian binary/ | sudo tee \
-  /etc/apt/sources.list.d/jenkins.list > /dev/null  # This will update the repository for jenkins
-
-apt-get update -y # This will update the repository
-
-apt-get install jenkins -y # This will install jenkins
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt update
+sudo apt install jenkins -y
 
 echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 
 #####################################################################################################
 # Terraform Installation
